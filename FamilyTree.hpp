@@ -1,3 +1,4 @@
+/*Author: Zohar Zrihen */
 #ifndef FamilyTree_HPP
 #define FamilyTree_HPP
 

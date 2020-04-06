@@ -1,3 +1,5 @@
+/*Author: Zohar Zrihen */
+
 #include "doctest.h"
 #include "FamilyTree.hpp"
 #include <string>

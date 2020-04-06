@@ -1,3 +1,4 @@
+/*Author: Zohar Zrihen */
 #include "FamilyTree.hpp"
 #include <iostream>
 #include <string>
