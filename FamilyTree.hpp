@@ -11,6 +11,8 @@ namespace family{
     class Tree{
         string name;
         Tree *father, *mother;
+        
+        Tree *findSon(string fname);
     public:
         Tree(string n): 
             name(n), 
