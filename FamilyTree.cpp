@@ -83,12 +83,77 @@ string Tree::relation(string n){
 }
 
 
-string Tree::find(string relation){
-    return "temp";
+string Tree::find(string rel){
+    string temp;
+    if(rel=="me"){
+        return name;
+    }
+    if(rel=="father"){
+        if(father!=nullptr){
+            return father->name;
+        }
+        else{
+             throw out_of_range("Given wrong relation");
+        }
+    }
+    if(rel="mother"){
+        if(mother!=nullptr){
+            return mother->name;
+        }
+        else{
+             throw out_of_range("Given wrong relation");
+        }
+    }
+    if(rel.at(0)=='g'){
+        try{
+            string temp2=rel.substr(0,5);
+            if(temp2!="great" && temp2!="grand"){
+                goto THROW;
+            }
+            temp=rel.substr(5);
+            if(temp.at(0)=="-"){
+                temp.earse(0,1);
+            }
+        } catch(out_of_range& ex){
+            goto THROW;
+        }
+    if(father!= nullptr){
+        try{
+            return father->find(temp);
+        } catch(out_of_range &ex){}
+        if(mother != nullptr){
+            return mother->find(temp);
+        }
+    }
+    throw out_of_range("Requested relation dosn't exist");
+    }
+    THROW:
+    throw runtime_error("wrong relation given");
 }
+
+
 void Tree::display(){
     return;
 }
-bool Tree::remove(string name){
-    return true;
+
+
+bool Tree::remove(string fname){
+    if(fname ==name){
+        throw invalid_argument("cant remove the root");
+    }
+    if(father!=nullptr &&father->name==fname){
+        delete father;
+        father=nullptr;
+        return true;
+    }
+    if(mother!=nullptr &&mother->name==fname){
+        delete mother;
+        mother=nullptr;
+        return true;
+    }
+    bool ans=(father!=nullptr && father->remove(fname)) || (mother!=nullptr && mother->remove(fname));
+    if(ans == false){
+        throw invalid_argument("cant find this ancestor");
+    }
+    return ans;
 }
