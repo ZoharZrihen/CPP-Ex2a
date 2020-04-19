@@ -53,14 +53,14 @@ string Tree::relation(string n){
     if(father!=nullptr){
         ans=father->relation(n);
         if(ans!="unrelated"){
-            if(ans="me"){
+            if(ans=="me"){
                 ans="father";
             }
             else if(ans=="father" || ans=="mother"){
                 ans="grand"+ans;
             }
             else{
-                ans="great-"+ans
+                ans="great-"+ans;
             }
         }
     }
@@ -96,7 +96,7 @@ string Tree::find(string rel){
              throw out_of_range("Given wrong relation");
         }
     }
-    if(rel="mother"){
+    if(rel=="mother"){
         if(mother!=nullptr){
             return mother->name;
         }
@@ -111,8 +111,8 @@ string Tree::find(string rel){
                 goto THROW;
             }
             temp=rel.substr(5);
-            if(temp.at(0)=="-"){
-                temp.earse(0,1);
+            if(temp.at(0)=='-'){
+                temp.erase(0,1);
             }
         } catch(out_of_range& ex){
             goto THROW;
